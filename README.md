@@ -1,2 +1,2 @@
 # angular-project
- soft-uni-anular-october-2024
+ soft-uni-angular-october-2024
