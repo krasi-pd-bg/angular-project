@@ -1,0 +1,36 @@
+<div class="search-form-container">
+    <form id="searchForm" class="search-form">
+        <label for="name">Wine Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter wine name">
+
+        <label for="type">Type of wine:</label>
+        <input type="text" id="type" name="type" placeholder="Enter type of wine">
+
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div id="searchResults" class="search-results hidden">
+    <h2>Matching wines:</h2>
+    <!-- Sample result - dynamically generated -->
+    <div class="wine-result">
+        <img src="https://vino-bg.com/134-large_default/redark.jpg" alt="wine X" class="wine-img">
+        <div class="wine-info">
+            <p><strong>Wine Name:</strong> Merlot Redark 2001</p>
+            <p><strong>Type of wine:</strong> red</p>
+            <a class="detail-btn" href="/" >Details</a>
+        </div>
+    </div>
+    <div class="wine-result">
+        <img src="https://cdn.ct-static.com/labels/9a97814c-c671-4037-9a16-e8d33b6c8e47.jpg" alt="wine X" class="wine-img">
+        <div class="wine-info">
+            <p><strong>Wine Name:</strong> Enira reserva 2006</p>
+            <p><strong>Type of wine:</strong> blend</p>
+            <a class="detail-btn" href="/">Details</a>
+        </div>
+    </div>
+
+    <p class="no-matches">There are no wines found yet!</p>
+
+    
+</div>

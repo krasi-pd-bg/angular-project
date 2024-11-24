@@ -1,0 +1,39 @@
+header {
+    background: brown;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+    color: #fff;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #000;
+}

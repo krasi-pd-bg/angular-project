@@ -1,0 +1,47 @@
+/*main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}*/
+
+.wine-form {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    height: 100%;
+}
+
+.wine-form label {
+    margin-top: 10px;
+    display: block;
+}
+
+.wine-form input,
+.wine-form select,
+.wine-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.wine-form button {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.wine-form button:hover {
+    background-color: #45a049;
+}
