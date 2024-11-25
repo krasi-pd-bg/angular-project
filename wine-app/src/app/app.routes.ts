@@ -6,6 +6,8 @@ import { ErrorComponent } from './error/error.component';
 import { SearchComponent } from './main/search/search.component';
 import { CatalogComponent } from './main/catalog/catalog.component';
 import { CreateProductComponent } from './main/product/create-product/create-product.component';
+import { EditProductComponent } from './main/product/edit-product/edit-product.component';
+import { ProductDetailsComponent } from './main/product/product-details/product-details.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent },
@@ -23,6 +25,8 @@ export const routes: Routes = [
             {path: 'product',
                 children: [
                     {path: 'create', component: CreateProductComponent},
+                    {path: 'edit', component: EditProductComponent},
+                    {path: 'details', component: ProductDetailsComponent}
                 ]
             },
 
