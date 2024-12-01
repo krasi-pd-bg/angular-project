@@ -1,16 +1,14 @@
 
-<div class="wine-card" id="wine1">
-    <img
-        src="https://www.wine-searcher.com/images/labels/14/00/10501400.jpg">
-    <h3>Merlot Redark 2000 Damianitza</h3>
-    <p>160 euro</p>
-    <a class='detail-btn' href='#'>Details</a>
-</div>
-<div class="wine-card" id="wine2">
-    <img src="https://bgvinoblog.wordpress.com/wp-content/uploads/2010/09/enira-2006.jpg" alt="wine 2">
-    <h3>Bessa Valley Enira Resserva 2006</h3>
-    <p>180 euro</p>
-    <a class='detail-btn' href='#'>Details</a>
-</div>
-<!-- Repeat the block for more wines -->
-<p class="no-post">There are no wines found yet!</p>
+@if (wines) {
+    
+    @for (wine of wines; track $index) {
+        <div class="wine-card" id="wine">
+            <img src={{wine.image}} alt="wine">
+            <h3>{{wine.name}}</h3>
+            <p>{{wine.price}} euro</p>
+            <a class='detail-btn' [routerLink]="['/catalog/product/details', wine._id]">Details</a>
+        </div>
+    }
+} @else {
+    <p class="no-post">There are no wines found yet!</p>
+}

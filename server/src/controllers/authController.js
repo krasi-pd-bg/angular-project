@@ -6,12 +6,13 @@ import { getErrorMessage } from '../utils/errorUtils.js';
 const authController = Router();
 
 authController.get('/register', (req, res) => {
-    res.status(200 );
+    res.send('register works');
 });
 
 authController.post('/register', async (req, res) => {
     // get input
     const { username, email, password, rePassword } = req.body;
+    
     // check rePassword in authService
     //call authService register function
     try {
@@ -28,13 +29,18 @@ authController.post('/register', async (req, res) => {
 });
 
 authController.get('/login', (req, res) => {
-    res.status(200);
+    
     res.send('login works');
 });
 
 authController.post('/login', async (req, res) => {
     // get login data
     const { email, password } = req.body;
+    /*const { email, password } = {
+        email: "pesho@abv.bg",
+        password: "123456",
+    }*/
+    
     try {
         // use auth service login
         const token = await authService.login(email, password);
@@ -55,6 +61,7 @@ authController.post('/login', async (req, res) => {
 
 authController.get('/logout', (req, res) => {
     res.clearCookie(AUTH_COOKIE_NAME);
+    res.send('logout');
     res.status(204).end();
 });
 

@@ -17,6 +17,7 @@ const authService = {
             email,
             password
         })
+        console.log(newUser);
 
         return this.generateToken(newUser);
     },

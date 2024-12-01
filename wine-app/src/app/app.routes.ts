@@ -26,15 +26,13 @@ export const routes: Routes = [
                 children: [
                     {path: 'create', component: CreateProductComponent},
                     {path: 'edit', component: EditProductComponent},
-                    {path: 'details', component: ProductDetailsComponent}
+                    {path: 'details/:id', component: ProductDetailsComponent}
                 ]
             },
 
         ]
     },
     
-    {
-        path: '**',
-        component: ErrorComponent,
-      },
+    {path: '**', redirectTo: 'error-page'},
+    {path: 'error-page', component: ErrorComponent},
 ];

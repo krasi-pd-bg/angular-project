@@ -1,21 +1,25 @@
-<div class="wine-details">
-    <img src="https://meik98.bg/images/detailed/5/BIG_IMG_12808237948206.jpg">
-    <div class="wine-info">
-        <h2>Wine: Merlot Redark 2001</h2>
-        <p><strong>type of wine:</strong> Red </p>
-        <p><strong>grape variety:</strong> Merlot</p>
-        <p><strong>vintage:</strong> 2001</p>
-        <p><strong>wine cellar</strong> Damyanitza</p>
-        <p><strong>region/country:</strong> Struma valley/Bulgaria</p>
-        <p><strong>price:</strong> 115.00 euro</p>
-        <p><strong>raiting:</strong> 0 points</p>
-        <p><strong>Description:</strong> Fine dry red wine from Struma valley, Bulgaria.</p>
+@if (wine) {
+    <div class="wine-details">
+        <img src={{wine.image}}>
+        <div class="wine-info">
+            <h2>Wine: {{wine.name}}</h2>
+            <p><strong>type of wine:</strong> {{wine.type}} </p>
+            <p><strong>grape variety:</strong> {{wine.grapeVariety}}</p>
+            <p><strong>vintage:</strong> {{wine.vintage}}</p>
+            <p><strong>wine cellar:</strong> {{wine.wineCellar}}</p>
+            <p><strong>region/country:</strong> {{wine.regionCountry}}</p>
+            <p><strong>price:</strong> {{wine.price}} euro</p>
+            <p><strong>raiting:</strong> {{wine.likedList.length || 0}} points</p>
+            <p><strong>Description:</strong> {{wine.description}}</p>
+        </div>
+    
+        <div class="actions">
+            <a id="like-button" class="like-btn" href="">Like</a>
+            <a class="edit-btn" [routerLink]="['/catalog', 'product', 'edit']">Edit</a>
+            <a class="delete-btn" href="">Delete</a>
+        </div>
+        <p id="liked-message" class="liked-message hidden">You've already liked this wine.</p>
     </div>
+    
+}
 
-    <div class="actions">
-        <a id="like-button" class="like-btn" href="">Like</a>
-        <a class="edit-btn" [routerLink]="['/catalog', 'product', 'edit']">Edit</a>
-        <a class="delete-btn" href="">Delete</a>
-    </div>
-    <p id="liked-message" class="liked-message hidden">You've already liked this wine.</p>
-</div>
