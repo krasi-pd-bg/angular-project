@@ -1,10 +1,49 @@
-<form class="login-form" action="" method="">
+<form class="login-form" action="" method="" #form="ngForm" (ngSubmit)="login(form)">
     <label for="username">Username:</label>
-    <input type="text" id="username" name="">
+    <input 
+    type="text" 
+    id="username" 
+    name="username"
+    ngModel
+    #inputUsername="ngModel"
+    required
+    minlength="2"    
+    >
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="">
-
-    <button type="submit">Login</button>
+    <input 
+    type="text" 
+    id="password" 
+    name="password"
+    ngModel
+    #inputPassword="ngModel"
+    required
+    minlength="6"
+    >
+    <button type="submit" [style]="{backgroundColor: form.invalid ? 'brown' : null}">Login</button>
     <p class="signup">Don't have an account? <a [routerLink]="['/auth/register']">Sign up here</a></p>
 </form>
+
+@if (errorMsg) {
+    <div class="error-containers">
+        <p>{{errorMsg}}</p>
+    </div>
+}
+
+@if (inputUsername.touched && inputUsername.errors?.['required']) {    
+        <div class="error-containers">
+            <p>Username is required and must be at least two characters!</p>
+        </div>
+}
+@if (inputUsername.errors?.['minlength']) {    
+    <div class="error-containers">
+        <p>Username is required and must be at least two characters!</p>
+    </div>
+}
+@if (inputPassword.errors?.['minlength']) {
+    <div class="error-containers">
+        <p>Password is required and must be at least six characters!</p>
+    </div>
+}
+    
+
