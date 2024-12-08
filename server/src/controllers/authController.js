@@ -19,12 +19,12 @@ authController.post('/register', async (req, res) => {
         const token = await authService.register(username, email, password, rePassword);
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         
-        res.send(token);
-        //res.json(token);
+        //res.send(token);
+        res.json(token);
     } catch (err) {
         // add error message
         const error = getErrorMessage(err);
-        res.send(error);
+        res.json(error);
     }
 });
 
@@ -35,7 +35,8 @@ authController.get('/login', (req, res) => {
 
 authController.post('/login', async (req, res) => {
     // get login data
-    const { email, password } = req.body;
+    const { username, password } = req.body;
+    console.log(username, password);
     /*const { email, password } = {
         email: "pesho@abv.bg",
         password: "123456",
@@ -43,13 +44,14 @@ authController.post('/login', async (req, res) => {
     
     try {
         // use auth service login
-        const token = await authService.login(email, password);
+        const token = await authService.login(username, password);
+        console.log(token);
         
         // add token to cookie
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         
-        res.send(token);
-        //res.json(token);
+        //res.send(token);
+        res.json(token);
         
         
     } catch (err) {
@@ -60,8 +62,8 @@ authController.post('/login', async (req, res) => {
 });
 
 authController.get('/logout', (req, res) => {
+    console.log('logout');
     res.clearCookie(AUTH_COOKIE_NAME);
-    res.send('logout');
     res.status(204).end();
 });
 

@@ -25,7 +25,8 @@ errorMsg: string = '';
       this.errorMsg = "Password do not match!";
       return;
     }
-
-    this.router.navigate(['/catalog']);
+    this.userService.register(username, email, password, rePassword).subscribe(() => {
+      this.router.navigate(['/catalog']);
+    });
   }
 }

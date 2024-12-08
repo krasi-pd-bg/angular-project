@@ -22,18 +22,18 @@ const authService = {
         return this.generateToken(newUser);
     },
 
-    async login(email, password) {
+    async login(username, password) {
         // get user from database
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         // throw error if user didn't exist
         if (!user) {
-            throw new Error('Invalid email or password!');
+            throw new Error('Invalid username or password!');
         }
         // check password
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
-            throw new Error('Invalid email or password!')
+            throw new Error('Invalid username or password!')
         }
 
         return this.generateToken(user);
