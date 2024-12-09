@@ -10,10 +10,31 @@ import { UserService } from '../../user/user.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-isLoggedIn: boolean = false;
+  //username = localStorage['user'];
+  //get isLoggedIn(): boolean {
+  //return !!this.username
+    //}
+
+    get isLoggedIn(): boolean {
+      return this.userService.isLogged;
+    }
+
+    get username(): string {
+      return this.userService.user?.username || 'no user';
+    }
+
 constructor(private userService: UserService, private router: Router) {}
 
-logout() {  
-  this.userService.logout().subscribe();
+
+  logout() {
+    this.userService.logout()
+    localStorage.removeItem('user')
+    localStorage.clear();
+    this.router.navigate(['/auth/login']);
+        
+  }
 }
-}
+
+
+
+

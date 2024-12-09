@@ -10,6 +10,7 @@ const app = express();
 configDatabase();
 configExpress(app);
 
-app.use(routes);    // app.use('/api', routes); localhost:3000/api
+app.use(routes);    
+//app.use('/api', routes); localhost:3000/api
 
 app.listen(3000, () => console.log('Server is listening on http://localhost:3000'));

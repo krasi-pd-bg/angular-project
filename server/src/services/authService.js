@@ -18,8 +18,8 @@ const authService = {
             password
         })
         console.log(newUser);
-
-        return this.generateToken(newUser);
+        return newUser;
+        //return this.generateToken(newUser);
     },
 
     async login(username, password) {
@@ -36,7 +36,8 @@ const authService = {
             throw new Error('Invalid username or password!')
         }
 
-        return this.generateToken(user);
+        //return this.generateToken(user);
+        return user;
     },
     // generate token
     async generateToken(user) {

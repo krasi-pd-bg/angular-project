@@ -6,7 +6,7 @@ import { getErrorMessage } from '../utils/errorUtils.js';
 const authController = Router();
 
 authController.get('/register', (req, res) => {
-    res.send('register works');
+    
 });
 
 authController.post('/register', async (req, res) => {
@@ -19,8 +19,9 @@ authController.post('/register', async (req, res) => {
         const token = await authService.register(username, email, password, rePassword);
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         
-        //res.send(token);
-        res.json(token);
+        res.send(token);
+        console.log(token);
+        //res.json(token);
     } catch (err) {
         // add error message
         const error = getErrorMessage(err);
@@ -29,16 +30,15 @@ authController.post('/register', async (req, res) => {
 });
 
 authController.get('/login', (req, res) => {
-    
-    res.send('login works');
+    res.send('login');
 });
 
 authController.post('/login', async (req, res) => {
     // get login data
     const { username, password } = req.body;
-    console.log(username, password);
-    /*const { email, password } = {
-        email: "pesho@abv.bg",
+    //console.log(username, password);
+    /*const { username, password } = {
+        username: "pesho",
         password: "123456",
     }*/
     
@@ -50,8 +50,8 @@ authController.post('/login', async (req, res) => {
         // add token to cookie
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         
-        //res.send(token);
-        res.json(token);
+        res.send(token);
+        //res.json(token);
         
         
     } catch (err) {

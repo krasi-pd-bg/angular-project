@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../user.service';
@@ -22,7 +22,10 @@ export class LoginComponent {
     }
 
     const { username, password } = form.value;
-    this.userService.login(username, password).subscribe(() => {
+
+    this.userService.login(username, password).subscribe((data) => {
+      const currentUser = data.username;
+      localStorage.setItem('user', currentUser);
       this.router.navigate(['/catalog']);
     });
     

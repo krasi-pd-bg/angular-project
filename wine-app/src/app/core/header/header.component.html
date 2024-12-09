@@ -5,10 +5,18 @@
             <li><a routerLink="/">Home</a></li>
             <li><a routerLink="catalog">Catalog</a></li>
             <li><a routerLink="catalog/search">Search</a></li>
-            <li><a routerLink="auth/login">Login</a></li>
-            <li><a routerLink="auth/register">Register</a></li>
-            <li><a routerLink="catalog/product/create">Create</a></li>
-            <li><a routerLink="auth/login" (click)="logout()">Logout</a></li>
+            @if(!isLoggedIn) {
+                <li><a routerLink="auth/login">Login</a></li>
+                <li><a routerLink="auth/register">Register</a></li>
+            } @else {
+                <li><a routerLink="catalog/product/create">Create</a></li>
+                <li><a routerLink="auth/login" (click)="logout()">Logout</a></li>                
+                <li><div >{{username}}'s profile</div></li>          
+            }                   
         </ul>
     </nav>
+    <div>
+        {{username}}
+    </div>
+    
 </header>

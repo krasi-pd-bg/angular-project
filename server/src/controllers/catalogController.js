@@ -12,17 +12,16 @@ catalogController.get('/', async (req, res) => {
     
 });
 
-catalogController.get('/create', isAuth, (req, res) => {
-    res.send('catalog create');
-    
+catalogController.get('/create', (req, res) => { // isAuth
+    res.send(' get method /create works');
     
 });
 
-catalogController.post('/create', isAuth, async (req, res) => {
+catalogController.post('/create', async (req, res) => { // isAuth
     const wineData = req.body;
-    /*const wineData = {
+    /* const wineData = {
         name: "Terres Mavrud 2010",
-        type: "red",
+        type: "white",
         grapeVariety: "Mavrud",
         vintage: 2010,
         wineCellar: "Wine Cellar Todoroff",
@@ -30,13 +29,16 @@ catalogController.post('/create', isAuth, async (req, res) => {
         price: 85.00,
         description: "Fine dry red aged wine",
         image: "https://www.sid-shop.com/media/catalog/product/cache/5a44058c21b07e4f9b1b259091147119/t/o/todoroff-teres-mavrud-2016-image_5f00ff88b682b_1280x1280.jpeg"
-    }*/
-    const userId = req.user._id;
+    } */
     
+    const userId = req.user._id;
+    //console.log(userId);
+    //res.send(`post method /catalog/create works with userId: ${userId}`);
 
     try {
-        await wineService.create(wineData, userId);
-        res.send(userId);
+        const result = await wineService.create(wineData, userId);
+        console.log(result);
+        res.json(result);
         
     } catch (err) {
         const error = getErrorMessage(err);
@@ -47,9 +49,7 @@ catalogController.post('/create', isAuth, async (req, res) => {
 catalogController.get('/search', async (req, res) => {
     const query = req.query;
     const wines = await wineService.getAll(query).lean();
-    res.send('search');
-    res.status(200);
-    res.end();
+    
 });
 
 catalogController.get('/:wineId/details', async (req, res) => {
@@ -88,6 +88,7 @@ catalogController.get('/:wineId/delete', async (req, res) => {
 
 catalogController.get('/:wineId/edit', async (req, res) => {
     const wine  = await wineService.getOne(req.params.wineId).lean();
+    res.send(wine);
 
     
 });

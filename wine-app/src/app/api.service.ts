@@ -13,6 +13,7 @@ export class ApiService {
   getWines() {
     const { apiUrl } = environment;
     let url = `${apiUrl}/catalog`;
+    //let url = `/api/catalog`; 
     
     return this.http.get<Wine[]>(url);
   }
@@ -20,7 +21,15 @@ export class ApiService {
   getSingleWine(id: string) {
     const { apiUrl } = environment;
     let url = `${apiUrl}/catalog/${id}/details`;
+    //let url = `/api/catalog/${id}/details`;
     
     return this.http.get<Wine>(url);
+  }
+
+  createWine( name: string, type: string, grapeVariety: string, vintage: number, wineCellar: string, regionCountry: string, price: number, description: string, image: string ) {
+    const { apiUrl } = environment;
+    let url = `${apiUrl}/catalog/create`;
+    
+    return this.http.post<Wine>(url, { name, type, grapeVariety, vintage, wineCellar, regionCountry, price, description, image });
   }
 }
