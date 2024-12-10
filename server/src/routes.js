@@ -10,13 +10,9 @@ router.use(homeController);
 router.use('/auth', authController);
 router.use('/catalog', catalogController);
 
-
-
-
-
-router.all('*', (req, res) => {
+/*router.all('*', (req, res) => {
     res.render('404', {title: '404'});
-});
+});*/
 
 
 export default router;

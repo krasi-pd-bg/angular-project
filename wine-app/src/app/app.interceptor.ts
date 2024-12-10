@@ -5,12 +5,12 @@ const { apiUrl } = environment;
 const API = '/api';
 
 export const appInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log(req);
+  //console.log(req);
   if (req.url.startsWith(API)) {
     req = req.clone({
       url: req.url.replace(API, apiUrl),
       withCredentials: false,
-    });
+    })
   }
 
   return next(req);

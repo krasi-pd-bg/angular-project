@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import wineService from '../services/catalogService.js';
+import { AUTH_COOKIE_NAME } from '../constants.js';
 
 import { getErrorMessage } from '../utils/errorUtils.js';
 import { isAuth } from '../middlewares/authMiddleware.js';
@@ -8,6 +9,7 @@ const catalogController = Router();
 
 catalogController.get('/', async (req, res) => {
     const wines = await wineService.getAll();
+    res.cookie(AUTH_COOKIE_NAME, wines, { httpOnly: true }); //work here with cookies
     res.send(wines);
     
 });
@@ -37,6 +39,7 @@ catalogController.post('/create', async (req, res) => { // isAuth
 
     try {
         const result = await wineService.create(wineData, userId);
+        res.cookie(AUTH_COOKIE_NAME, result, { httpOnly: true }); //work here with cookies
         console.log(result);
         res.json(result);
         

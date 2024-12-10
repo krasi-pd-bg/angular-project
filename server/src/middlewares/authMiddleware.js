@@ -6,15 +6,16 @@ export const authMiddleware = async (req, res, next) => {
     const token = req.cookies[AUTH_COOKIE_NAME];
 
     if (!token) {
+        console.log('no token');
        return next();
     }
 
     // validate the token
     try {
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
-        
+        console.log('verify token');
         req.user = decodedToken;
-        req.isAuthenticated = true;
+        //req.isAuthenticated = true;
         
         res.locals.user = decodedToken;
         

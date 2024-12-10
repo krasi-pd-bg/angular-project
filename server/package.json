@@ -1,7 +1,7 @@
 {
   "name": "back-end-skeleton",
   "version": "1.0.0",
-  "description": "JS Back End Exam Prep",
+  "description": "JS Back End Server",
   "main": "index.js",
   "type": "module",
   "scripts": {
