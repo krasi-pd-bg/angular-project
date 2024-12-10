@@ -29,8 +29,13 @@ export class ApiService {
   createWine( name: string, type: string, grapeVariety: string, vintage: number, wineCellar: string, regionCountry: string, price: number, description: string, image: string ) {
     const { apiUrl } = environment;
     //let url = `${apiUrl}/catalog/create`;
-    let url = `/api/catalog/create`
-    
+    let url = `/api/catalog/create`    
     return this.http.post<Wine>(url, { name, type, grapeVariety, vintage, wineCellar, regionCountry, price, description, image });
+  }
+
+  removeWine( id: string) {
+    let url = `/api/catalog/${id}/delete`;
+    return this.http.get<Wine>(url);
+
   }
 }

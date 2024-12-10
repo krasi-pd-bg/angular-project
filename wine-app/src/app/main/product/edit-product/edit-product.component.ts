@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './edit-product.component.css'
 })
 export class EditProductComponent {
+  
 
 }

@@ -20,7 +20,7 @@
     required
     minlength="6"
     >
-    <button type="submit" [style]="{backgroundColor: form.invalid ? 'brown' : null}">Login</button>
+    <button [style]="{backgroundColor: form.invalid ? 'brown' : null}">Login</button>
     <p class="signup">Don't have an account? <a [routerLink]="['/auth/register']">Sign up here</a></p>
 </form>
 

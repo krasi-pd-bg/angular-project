@@ -63,15 +63,15 @@ authController.post('/login', async (req, res) => {
 
 authController.post('/logout', (req, res) => {
     console.log('logout');
-    res.send('logout');
     res.clearCookie(AUTH_COOKIE_NAME);
-    res.status(204).end();
+    res.send(null);
+    
 });
 authController.get('/logout', (req, res) => {
     console.log('logout');
-    res.send('logout');
+    
     res.clearCookie(AUTH_COOKIE_NAME);
-    res.status(204).end();
+    res.send('logout');
 });
 
 

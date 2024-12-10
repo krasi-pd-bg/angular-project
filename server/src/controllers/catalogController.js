@@ -33,8 +33,8 @@ catalogController.post('/create', async (req, res) => { // isAuth
         image: "https://www.sid-shop.com/media/catalog/product/cache/5a44058c21b07e4f9b1b259091147119/t/o/todoroff-teres-mavrud-2016-image_5f00ff88b682b_1280x1280.jpeg"
     } */
     
-    const userId = req.user._id;
-    //console.log(userId);
+    //const userId = req.user._id;
+    const userId = '6748c9320b832d410f5852cf';
     //res.send(`post method /catalog/create works with userId: ${userId}`);
 
     try {
@@ -59,8 +59,8 @@ catalogController.get('/:wineId/details', async (req, res) => {
 
     const wine = await wineService.getOne(req.params.wineId).lean();
     
-    const isOwner = wine.owner.toString() == req.user?._id;
-    const isVoted = wine.likedList?.some(userId => userId == req.user?._id);
+    //const isOwner = wine.owner.toString() == req.user?._id;
+    //const isVoted = wine.likedList?.some(userId => userId == req.user?._id);
     res.send(wine);
     
     
@@ -82,7 +82,7 @@ catalogController.get('/:wineId/vote', async (req, res) => {
 catalogController.get('/:wineId/delete', async (req, res) => {
     try {
         await wineService.remove(req.params.wineId);
-       
+       //await wineService.remove();
     } catch (error) {
         console.log(error);
         res.send(error);

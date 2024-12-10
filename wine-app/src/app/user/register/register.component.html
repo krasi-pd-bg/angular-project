@@ -40,7 +40,7 @@
     minlength="6"
     >
 
-    <button type="submit" [style]="{backgroundColor: form.invalid ? 'brown' : null}">Register</button>
+    <button [style]="{backgroundColor: form.invalid ? 'brown' : null}">Register</button>
     <p class="login">Already have an account? <a [routerLink]="['/auth/login']">Login here</a></p>
 </form>
 @if (errorMsg) {

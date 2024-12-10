@@ -85,7 +85,7 @@ export class UserService implements OnDestroy  {
     
     return () =>  this.http
       .post(url, {})
-      .pipe(tap((user) => this.user$$.next(null)));
+      .pipe(tap((user$$) => this.user$$.next(null)));
         
   }
   ngOnDestroy(): void {
