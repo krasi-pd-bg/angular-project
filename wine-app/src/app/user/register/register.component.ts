@@ -26,8 +26,8 @@ errorMsg: string = '';
       return;
     }
     this.userService.register(username, email, password, rePassword).subscribe((data) => {
-      const currentUser = data.username;
-      localStorage.setItem('user', currentUser);
+      //const currentUser = data.username;
+      //localStorage.setItem('user', currentUser);
       this.router.navigate(['/catalog']);
     });
   }

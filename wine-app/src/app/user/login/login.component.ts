@@ -24,8 +24,8 @@ export class LoginComponent {
     const { username, password } = form.value;
 
     this.userService.login(username, password).subscribe((data) => {
-      const currentUser = data.username;
-      localStorage.setItem('user', currentUser);
+      //const currentUser = data.username;
+      //localStorage.setItem('user', currentUser);
       this.router.navigate(['/catalog']);
     });
     

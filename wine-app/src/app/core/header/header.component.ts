@@ -27,11 +27,10 @@ constructor(private userService: UserService, private router: Router) {}
 
 
   logout() {
-    this.userService.logout()
-    localStorage.removeItem('user')
-    localStorage.clear();
-    this.router.navigate(['/auth/login']);
-        
+    this.userService.logout()     
+    
+    //localStorage.removeItem('user')
+    //localStorage.clear();        
   }
 }
 

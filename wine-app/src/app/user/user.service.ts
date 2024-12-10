@@ -17,21 +17,21 @@ export class UserService implements OnDestroy  {
   get isLogged(): boolean {
     return !!this.user;
   }
-  //signal
+  /*signal
   private currentUserSignal = signal<User | null>(null);
   public currentUser = this.currentUserSignal.asReadonly();
-  //end signal
+  */
 
 
   constructor(private http: HttpClient) { 
-    //
+    /*
     this.initializeUserFromStorage();
-    //
+    */
     this.userSubscription = this.user$.subscribe((user) => {
     this.user = user;      
     });
   }
-  //
+  /*
   private initializeUserFromStorage() {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -44,16 +44,18 @@ export class UserService implements OnDestroy  {
       }
     }
   }
-  //
+  */
 
 
   login(username: string, password: string) {
     const { apiUrl } = environment;
-    let url = `${apiUrl}/auth/login`;
-    //
+    //let url = `${apiUrl}/auth/login`;
+    let url = `/api/auth/login`;
+
+    /*
     this.currentUserSignal.set(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
-    //
+    */
     
     return this.http
     .post<User>(url, { username, password})
@@ -64,7 +66,8 @@ export class UserService implements OnDestroy  {
 
   register(username: string, email: string, password: string, rePassword: string) {
     const { apiUrl } = environment;
-    let url = `${apiUrl}/auth/register`;
+    //let url = `${apiUrl}/auth/register`;
+    let url = `/api/auth/register`;
     
     return this.http.post<User>(url, { username, email, password, rePassword})
     .pipe(tap((user) => this.user$$.next(user)));
@@ -72,17 +75,18 @@ export class UserService implements OnDestroy  {
 
   logout() {
     const { apiUrl } = environment;
-    let url = `${apiUrl}/auth/logout`;
+    //let url = `${apiUrl}/auth/logout`;
+    let url = `/api/auth/logout`;
 
-    //
+    /*
     this.currentUserSignal.set(null);
     localStorage.removeItem('user');
-    //
+    */
     
-    return () => {this.http
-      .get(url, {})
+    return () =>  this.http
+      .post(url, {})
       .pipe(tap((user) => this.user$$.next(null)));
-    }    
+        
   }
   ngOnDestroy(): void {
     this.userSubscription?.unsubscribe();

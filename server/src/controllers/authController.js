@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { response, Router } from 'express';
 import authService from '../services/authService.js';
 import { AUTH_COOKIE_NAME } from '../constants.js';
 import { getErrorMessage } from '../utils/errorUtils.js';
@@ -61,8 +61,15 @@ authController.post('/login', async (req, res) => {
     }
 });
 
+authController.post('/logout', (req, res) => {
+    console.log('logout');
+    res.send('logout');
+    res.clearCookie(AUTH_COOKIE_NAME);
+    res.status(204).end();
+});
 authController.get('/logout', (req, res) => {
     console.log('logout');
+    res.send('logout');
     res.clearCookie(AUTH_COOKIE_NAME);
     res.status(204).end();
 });
