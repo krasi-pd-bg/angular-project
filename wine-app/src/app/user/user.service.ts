@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy, signal } from '@angular/core'
 import { User } from '../types/user';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Subscription, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,49 +17,22 @@ export class UserService implements OnDestroy  {
   get isLogged(): boolean {
     return !!this.user;
   }
-  /*signal
-  private currentUserSignal = signal<User | null>(null);
-  public currentUser = this.currentUserSignal.asReadonly();
-  */
-
-
+  
   constructor(private http: HttpClient) { 
-    /*
-    this.initializeUserFromStorage();
-    */
+    
     this.userSubscription = this.user$.subscribe((user) => {
     this.user = user;      
     });
   }
-  /*
-  private initializeUserFromStorage() {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      try {
-        const user: User = JSON.parse(storedUser);
-        this.currentUserSignal.set(user);
-      } catch (error) {
-        console.error('Error parsing stored user', error);
-        localStorage.removeItem('user');
-      }
-    }
-  }
-  */
-
-
+ 
   login(username: string, password: string) {
     const { apiUrl } = environment;
     //let url = `${apiUrl}/auth/login`;
     let url = `/api/auth/login`;
-
-    /*
-    this.currentUserSignal.set(this.user);
-    localStorage.setItem('user', JSON.stringify(this.user));
-    */
     
     return this.http
     .post<User>(url, { username, password})
-    .pipe(tap((user) => this.user$$.next(user)));
+    .pipe(tap((user) => this.user$$.next(user)))
     
   }
     
@@ -77,11 +50,6 @@ export class UserService implements OnDestroy  {
     const { apiUrl } = environment;
     //let url = `${apiUrl}/auth/logout`;
     let url = `/api/auth/logout`;
-
-    /*
-    this.currentUserSignal.set(null);
-    localStorage.removeItem('user');
-    */
     
     return () =>  this.http
       .post(url, {})

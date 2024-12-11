@@ -10,11 +10,7 @@ import { UserService } from '../../user/user.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  //username = localStorage['user'];
-  //get isLoggedIn(): boolean {
-  //return !!this.username
-    //}
-
+  
     get isLoggedIn(): boolean {
       return this.userService.isLogged;
     }
@@ -25,15 +21,9 @@ export class HeaderComponent {
 
 constructor(private userService: UserService, private router: Router) {}
 
-
-  logout() {
-    this.userService.logout()     
-    
-    //localStorage.removeItem('user')
-    //localStorage.clear();        
+logout() {
+  this.userService.logout()     
   }
+  
 }
-
-
-
 

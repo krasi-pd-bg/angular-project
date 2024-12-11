@@ -16,7 +16,8 @@ errorMsg: string = '';
 
   register(form: NgForm) {
     if (form.invalid) {
-      console.error('Invalid login form');      
+      console.error('Invalid login form');
+      this.errorMsg = 'Invalid login form';   
       return;
     }
 

@@ -36,16 +36,11 @@ authController.get('/login', (req, res) => {
 authController.post('/login', async (req, res) => {
     // get login data
     const { username, password } = req.body;
-    //console.log(username, password);
-    /*const { username, password } = {
-        username: "pesho",
-        password: "123456",
-    }*/
+    
     
     try {
         // use auth service login
         const token = await authService.login(username, password);
-        console.log(token);
         
         // add token to cookie
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
