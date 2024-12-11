@@ -46,6 +46,7 @@ catalogController.post('/create', async (req, res) => { // isAuth
     } catch (err) {
         const error = getErrorMessage(err);
         res.send(error);
+        
     }
 });
 
@@ -68,14 +69,17 @@ catalogController.get('/:wineId/details', async (req, res) => {
 
 catalogController.get('/:wineId/vote', async (req, res) => {
     const wineId = req.params.wineId;
-    const userId = req.user._id;
+    //const userId = req.user._id;
+    const userId = "6748c9320b832d410f5852cf";
     try {
         await wineService.vote(wineId, userId);
-        
+        console.log("work");
+        res.send(wineId);
     } catch (err) {
         const error = getErrorMessage(err);
         console.log(error);   
-        res.send(error);     
+        //res.send(error);  
+        return error;   
     }
 });
 
@@ -85,15 +89,14 @@ catalogController.get('/:wineId/delete', async (req, res) => {
        //await wineService.remove();
     } catch (error) {
         console.log(error);
-        res.send(error);
+        //res.send(error);
+        return error;
     }
 });
 
 catalogController.get('/:wineId/edit', async (req, res) => {
     const wine  = await wineService.getOne(req.params.wineId).lean();
-    res.send(wine);
-
-    
+    res.send(wine);    
 });
 
 catalogController.post('/:wineId/edit', async (req, res) => {

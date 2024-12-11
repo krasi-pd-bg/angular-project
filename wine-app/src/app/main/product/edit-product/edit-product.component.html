@@ -1,31 +1,75 @@
-<form class="edit-form" action="" method="">
-    <label for="name">Wine:</label>
-    <input type="text" id="name" name="name" value="">
-
-    <label for="type">Type of wine:</label>
-    <input type="text" id="type" name="type" value="">
-
-    <label for="grape-variety">Grape variety:</label>
-    <input type="text" id="grape" name="grape-variety" value="">
-
-    <label for="vintage">Vintage:</label>
-    <input type="number" id="vintage" name="vintage" value="">
+@if(errorMsg) {
+    <div class="error-containers">
+        <p>{{errorMsg}}</p>
+    </div>
+}
+@if(wine){
+    <form class="edit-form" #form="ngForm" (ngSubmit)="edit(form)">
+        <label for="name">Wine:</label>
+        <input type="text" id="name" name="name" value={{wine.name}}
         
-    <label for="wine-cellar">Wine cellar:</label>
-    <input type="text" id="wine-cellar" name="wine-cellar" value="">
-
-    <label for="region-country">Region/country:</label>
-    <input type="text" id="region-country" name="region-country" value="">
-
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" value="">
-       
-
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="4"></textarea>
-
-    <label for="image">Image URL:</label>
-    <input type="url" id="image" name="" value="">
-
-    <button type="submit">Save Changes</button>
-</form>
+            ngModel
+            #inputName="ngModel"
+            required
+        >
+    
+        <label for="type">Type of wine:</label>
+        <input type="text" id="type" name="type" value={{wine.type}}
+            ngModel
+            #inputType="ngModel"
+            required
+        >
+    
+        <label for="grapeVariety">Grape variety:</label>
+        <input type="text" id="grape" name="grapeVariety" value={{wine.grapeVariety}}
+            ngModel
+            #inputGrapeVariety="ngModel"
+            required
+        >
+    
+        <label for="vintage">Vintage:</label>
+        <input type="number" id="vintage" name="vintage" value={{wine.vintage}}
+            ngModel
+            #inputVintage="ngModel"
+            required
+        >
+            
+        <label for="wineCellar">Wine cellar:</label>
+        <input type="text" id="wine-cellar" name="wineCellar" value={{wine.wineCellar}}
+            ngModel
+            #inputWineCellar="ngModel"
+            required
+        >
+    
+        <label for="regionCountry">Region/country:</label>
+        <input type="text" id="region-country" name="regionCountry" value={{wine.regionCountry}}
+            ngModel
+            #inputRegionCountry="ngModel"
+            required
+        >
+    
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value={{wine.price}}
+            ngModel
+            #inputPrice="ngModel"
+            required
+        >
+           
+    
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" value={{wine.description}}
+            ngModel
+            #inputDescription="ngModel"
+            required
+        ></textarea>
+    
+        <label for="image">Image URL:</label>
+        <input type="url" id="image" name="" value={{wine.image}}
+            ngModel
+            #inputImage="ngModel"
+            required
+        >
+    
+        <button>Save Changes</button>
+    </form>    
+}

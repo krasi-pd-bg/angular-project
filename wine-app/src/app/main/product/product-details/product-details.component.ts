@@ -12,6 +12,7 @@ import { Wine } from '../../../types/wine';
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit {
+  id: string = '';
   wine = {} as Wine;
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
@@ -20,6 +21,7 @@ export class ProductDetailsComponent implements OnInit {
       console.log(data['id']);      
     })*/
     const id = this.route.snapshot.params['id'];
+    this.id = id;
     
     this.apiService.getSingleWine(id).subscribe((wine) => {
       this.wine = wine;
@@ -32,9 +34,15 @@ export class ProductDetailsComponent implements OnInit {
       this.router.navigate(['/catalog']);
     });
   }
-
-  edit(wine: Wine): void {
-  const currentWine = signal(this.wine);
+  vote(): void {
+    const id = this.id;
+    console.log(id);
+    this.apiService.vote(id).subscribe((data) => {
+      console.log(data);
+      this.router.navigate([`/catalog`])
+    })
   }
-
 }
+
+
+

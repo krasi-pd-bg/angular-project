@@ -18,8 +18,5 @@ export class CatalogComponent implements OnInit {
   ngOnInit(): void {
     
     this.ApiService.getWines().subscribe((wines) => this.wines = wines);
-    
-
   }
-
 }

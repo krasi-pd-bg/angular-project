@@ -28,9 +28,5 @@ export class CreateProductComponent {
     });
     
     }
-
-    
-    
-
   }
 

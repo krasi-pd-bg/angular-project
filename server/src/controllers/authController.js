@@ -25,7 +25,7 @@ authController.post('/register', async (req, res) => {
     } catch (err) {
         // add error message
         const error = getErrorMessage(err);
-        res.json(error);
+        res.send(error);
     }
 });
 

@@ -33,9 +33,18 @@ export class ApiService {
     return this.http.post<Wine>(url, { name, type, grapeVariety, vintage, wineCellar, regionCountry, price, description, image });
   }
 
+  editWine(id: string, name: string, type: string, grapeVariety: string, vintage: number, wineCellar: string, regionCountry: string, price: number, description: string, image: string ) {
+    let url = `/api/catalog/${id}/edit`;
+    return this.http.post<Wine>(url, { name, type, grapeVariety, vintage, wineCellar, regionCountry, price, description, image })
+  }
+
   removeWine( id: string) {
     let url = `/api/catalog/${id}/delete`;
     return this.http.get<Wine>(url);
+  }
 
+  vote(id: string) {
+    let url = `/api/catalog/${id}/vote`;
+    return this.http.get<Wine>(url);
   }
 }
