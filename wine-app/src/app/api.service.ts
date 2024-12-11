@@ -47,4 +47,9 @@ export class ApiService {
     let url = `/api/catalog/${id}/vote`;
     return this.http.get<Wine>(url);
   }
+
+  search(name: string, type: string) {
+    let url = `/api/catalog/search`;
+    return this.http.post<Wine[]>(url, {name, type});
+  }
 }

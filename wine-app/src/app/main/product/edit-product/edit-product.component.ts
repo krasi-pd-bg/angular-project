@@ -12,7 +12,6 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './edit-product.component.css'
 })
 export class EditProductComponent implements OnInit{
-  msg: string = 'OK';
   wine = {} as Wine;
   errorMsg: string = '';
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }

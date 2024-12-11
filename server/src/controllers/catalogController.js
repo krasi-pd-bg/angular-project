@@ -50,9 +50,17 @@ catalogController.post('/create', async (req, res) => { // isAuth
     }
 });
 
-catalogController.get('/search', async (req, res) => {
-    const query = req.query;
-    const wines = await wineService.getAll(query).lean();
+catalogController.post('/search', async (req, res) => {
+    //const query = req.query;
+    const query = req.body;
+    console.log(req.body);
+    
+    try {
+        const wines = await wineService.getAll(query).lean();
+        res.send(wines);
+    } catch (error) {
+        return error;
+    }
     
 });
 
