@@ -16,16 +16,16 @@ authController.post('/register', async (req, res) => {
     // check rePassword in authService
     //call authService register function
     try {
-        const token = await authService.register(username, email, password, rePassword);
-        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
-        
-        res.send(token);
-        console.log(token);
+        const user = await authService.register(username, email, password, rePassword);
+        res.cookie(AUTH_COOKIE_NAME, user.accessToken, { httpOnly: true });        
+        res.send(user);
         //res.json(token);
     } catch (err) {
         // add error message
         const error = getErrorMessage(err);
-        res.send(error);
+        res.status(409)
+        res.send({message: error});
+        return;
     }
 });
 
@@ -35,38 +35,39 @@ authController.get('/login', (req, res) => {
 
 authController.post('/login', async (req, res) => {
     // get login data
-    const { username, password } = req.body;
-    
+    const { username, password } = req.body;   
     
     try {
         // use auth service login
-        const token = await authService.login(username, password);
-        
+        const user = await authService.login(username, password);        
         // add token to cookie
-        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
-        
-        res.send(token);
-        //res.json(token);
+        res.cookie(AUTH_COOKIE_NAME, user.accessToken, { httpOnly: true });        
+        res.send(user);
+        //res.json(user);
         
         
     } catch (err) {
         // TODO: send error message
         const error = getErrorMessage(err);
-        res.send(error);
+        res.status(401)
+        .send(error);
+        
     }
 });
 
 authController.post('/logout', (req, res) => {
     console.log('logout');
     res.clearCookie(AUTH_COOKIE_NAME);
-    res.send(null);
+    res.status(204)
+    .send({ message: 'Logged out' });
     
 });
 authController.get('/logout', (req, res) => {
     console.log('logout');
     
     res.clearCookie(AUTH_COOKIE_NAME);
-    res.send('logout');
+    res.status(204)
+    .send({ message: 'Logged out' });
 });
 
 

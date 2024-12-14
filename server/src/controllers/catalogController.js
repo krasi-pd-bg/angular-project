@@ -9,7 +9,7 @@ const catalogController = Router();
 
 catalogController.get('/', async (req, res) => {
     const wines = await wineService.getAll();
-    res.cookie(AUTH_COOKIE_NAME, wines, { httpOnly: true }); //work here with cookies
+    //res.cookie(AUTH_COOKIE_NAME, wines, { httpOnly: true }); //work here with cookies
     res.send(wines);
     
 });
@@ -39,7 +39,7 @@ catalogController.post('/create', async (req, res) => { // isAuth
 
     try {
         const result = await wineService.create(wineData, userId);
-        res.cookie(AUTH_COOKIE_NAME, result, { httpOnly: true }); //work here with cookies
+        //res.cookie(AUTH_COOKIE_NAME, result, { httpOnly: true }); //work here with cookies
         console.log(result);
         res.json(result);
         

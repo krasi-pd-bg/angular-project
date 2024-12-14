@@ -13,7 +13,7 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.url.startsWith(API)) {
     req = req.clone({
       url: req.url.replace(API, apiUrl),
-      withCredentials: false,
+      withCredentials: true,
     })
   }
 
@@ -21,16 +21,16 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
 
   return next(req).pipe(
-  /*catchError((err) => {
+  catchError((err) => {
     if (err.status === 401) {
-      router.navigate(['/auth/login']);
+      router.navigate(['/auth/login']);      
     } else {
       errorMsgService.setError(err);
       router.navigate(['/error']);
     }
 
     return [err];
-  })*/
+  })
 );
 
 

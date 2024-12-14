@@ -17,9 +17,8 @@ const authService = {
             email,
             password
         })
-        console.log(newUser);
-        return newUser;
-        //return this.generateToken(newUser);
+        //return newUser;
+        return this.generateToken(newUser);
     },
 
     async login(username, password) {
@@ -35,9 +34,8 @@ const authService = {
         if (!isValid) {
             throw new Error('Invalid username or password!')
         }
-
-        //return this.generateToken(user);
-        return user;
+        
+        return this.generateToken(user);
     },
     // generate token
     async generateToken(user) {
@@ -49,8 +47,14 @@ const authService = {
         };
         const header = { expiresIn: '2h', };
         const token = await jwt.sign(payload, process.env.JWT_SECRET, header)
-        // return token
-        return token;
+        console.log(`generateToken ${token}`);
+        //return token;
+        return {
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            accessToken: token,
+        };
     }
 
 }

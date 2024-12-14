@@ -15,6 +15,7 @@ export class LoginComponent {
   errorMsg: string = '';
   constructor(private router: Router, private userService: UserService) { }
 
+
   login(form: NgForm) {
     
     if (form.invalid) {
@@ -24,9 +25,12 @@ export class LoginComponent {
 
     const { username, password } = form.value;
 
-    this.userService.login(username, password).subscribe(() => {
-      this.router.navigate(['/catalog']);
-    })
+    this.userService.login(username, password).subscribe((data) => {
+    
+        this.router.navigate(['/catalog']);
+      
+      })
+      
   }
 
 }

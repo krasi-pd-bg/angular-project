@@ -33,7 +33,6 @@ export class UserService implements OnDestroy  {
     return this.http
     .post<User>(url, { username, password})
     .pipe(tap((user) => this.user$$.next(user)))
-    
   }
     
 
@@ -46,14 +45,25 @@ export class UserService implements OnDestroy  {
     .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  getProfile() {
+    let url = `/api/auth/login`;
+    return this.http.get<User>(url)
+    .pipe(
+      tap((user) => {
+        this.user$$.next(user)
+      })
+    )
+
+  }
+
   logout() {
     const { apiUrl } = environment;
     //let url = `${apiUrl}/auth/logout`;
     let url = `/api/auth/logout`;
     
-    return () =>  this.http
+    return this.http
       .post(url, {})
-      .pipe(tap((user$$) => this.user$$.next(null)));
+      .pipe(tap((user) => this.user$$.next(null)));
         
   }
   ngOnDestroy(): void {

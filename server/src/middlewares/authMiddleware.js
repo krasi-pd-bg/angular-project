@@ -4,6 +4,7 @@ import jwt from "../lib/jwt.js";
 
 export const authMiddleware = async (req, res, next) => {
     const token = req.cookies[AUTH_COOKIE_NAME];
+    //const token = req.header('X-Authorization');
 
     if (!token) {
         console.log('no token');
@@ -15,6 +16,7 @@ export const authMiddleware = async (req, res, next) => {
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
         console.log('verify token');
         req.user = decodedToken;
+        console.log(decodedToken);
         //req.isAuthenticated = true;
         
         res.locals.user = decodedToken;
@@ -26,7 +28,7 @@ export const authMiddleware = async (req, res, next) => {
         next();
     } catch (err) {
         res.clearCookie(AUTH_COOKIE_NAME);
-        res.redirect('auth/login');
+        //res.redirect('auth/login');
     }
 };
 

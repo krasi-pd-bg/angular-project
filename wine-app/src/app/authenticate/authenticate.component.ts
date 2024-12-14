@@ -14,6 +14,9 @@ export class AuthenticateComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAuthenticating = false;
+
+
+    
   }
 
 }
