@@ -13,10 +13,18 @@ export class AuthenticateComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.isAuthenticating = false;
-
-
-    
+    if(!this.userService.isLogged) {
+      this.userService.getProfile().subscribe({
+        next: (res) => {
+          this.isAuthenticating = false;
+        },
+        error: (err) => {
+          this.isAuthenticating = false;
+        },
+        complete: () => {
+          this.isAuthenticating = false;
+        }
+      })      
+    }
   }
-
 }
