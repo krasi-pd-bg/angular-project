@@ -46,7 +46,7 @@ export class UserService implements OnDestroy  {
   }
 
   getProfile() {
-    let url = `/api/auth/login`;
+    let url = `/api/auth/profile`;
     return this.http.get<User>(url)
     .pipe(
       tap((user) => {

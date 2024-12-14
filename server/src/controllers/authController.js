@@ -6,7 +6,7 @@ import { getErrorMessage } from '../utils/errorUtils.js';
 const authController = Router();
 
 authController.get('/register', (req, res) => {
-    
+        
 });
 
 authController.post('/register', async (req, res) => {
@@ -29,8 +29,17 @@ authController.post('/register', async (req, res) => {
     }
 });
 
-authController.get('/login', (req, res) => {
-    res.send('login');
+authController.get('/profile',  async (req, res) => {
+    const userId = req.user?._id;
+    try {
+        const user = await authService.getCurrentUser(userId);
+        res.cookie(AUTH_COOKIE_NAME, user.accessToken, { httpOnly: true });
+        res.send(user);
+    } catch (err) {
+        const error = getErrorMessage(err);
+        res.status(401)
+        .send(error);
+    }    
 });
 
 authController.post('/login', async (req, res) => {
