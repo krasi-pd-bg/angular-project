@@ -1,3 +1,5 @@
+import { User } from "./user";
+
   export interface Wine {
     _id: string;
     name: string;
@@ -10,6 +12,6 @@
     description: string;
     image: string;
     likedList: string[];
-    owner: string;
+    owner: User;
     __v: number;
   }

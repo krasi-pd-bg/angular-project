@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { ApiService } from '../../../api.service';
 import { Wine } from '../../../types/wine';
+import { UserService } from '../../../user/user.service';
+import { User } from '../../../types/user';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +16,15 @@ import { Wine } from '../../../types/wine';
 export class ProductDetailsComponent implements OnInit {
   id: string = '';
   wine = {} as Wine;
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
+  
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private userService: UserService) { }
+
+  get isAuthenticated(): boolean {
+     return this.userService.isLogged
+  }
+  get isOwner(): boolean {
+    return ((this.wine.owner).toString() === this.userService.user?._id)
+  }
 
   ngOnInit(): void {
     /*this.route.params.subscribe((data) => {
@@ -25,6 +35,7 @@ export class ProductDetailsComponent implements OnInit {
     
     this.apiService.getSingleWine(id).subscribe((wine) => {
       this.wine = wine;
+      console.log(wine.owner);
      });    
   }
   remove(): void {

@@ -12,13 +12,20 @@
             <p><strong>rating:</strong> {{wine.likedList.length || 0}} points</p>
             <p><strong>Description:</strong> {{wine.description}}</p>
         </div>
-    
+    @if (isAuthenticated) {
         <div class="actions">
-            <a id="like-button" class="like-btn" (click)="vote()">Like</a>
-            <a class="edit-btn" [routerLink]="['/catalog', 'product', 'edit', wine._id]">Edit</a>
-            <a class="delete-btn" (click)="remove()">Delete</a>
+            
+            @if (isOwner) {
+                <a class="edit-btn" [routerLink]="['/catalog', 'product', 'edit', wine._id]">Edit</a>
+                <a class="delete-btn" (click)="remove()">Delete</a>
+            } @else {
+                <a id="like-button" class="like-btn" (click)="vote()">Like</a>
+            }
+            
         </div>
         <p id="liked-message" class="liked-message hidden">You've already liked this wine.</p>
+    }
+        
     </div>
     
 }
