@@ -24,6 +24,7 @@ ngOnInit(): void {
       this.wine = wine;
      });    
 }
+
   edit(form: NgForm) {
     if (form.invalid) {
       this.errorMsg = 'All fields are required';
@@ -36,7 +37,7 @@ ngOnInit(): void {
       
       console.log(form.value);
       const id = this.route.snapshot.params['id'];
-      /*this.apiService.editWine(id,
+      this.apiService.editWine(id,
         name, 
         type, 
         grapeVariety, 
@@ -45,8 +46,9 @@ ngOnInit(): void {
         regionCountry, 
         price, 
         description, 
-        image).subscribe(()=> {
+        image)
+        .subscribe(()=> {
         this.router.navigate(['/catalog']);
-      });*/
+      });
   }
 }

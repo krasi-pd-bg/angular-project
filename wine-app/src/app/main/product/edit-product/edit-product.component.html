@@ -6,7 +6,7 @@
 @if(wine){
     <form class="edit-form" #form="ngForm" (ngSubmit)="edit(form)">
         <label for="name">Wine:</label>
-        <input type="text" id="name" name="name" value={{wine.name}}
+        <input type="text" id="name" name="name" placeholder={{wine.name}}
         
             ngModel
             #inputName="ngModel"
@@ -14,42 +14,42 @@
         >
     
         <label for="type">Type of wine:</label>
-        <input type="text" id="type" name="type" value={{wine.type}}
+        <input type="text" id="type" name="type" placeholder={{wine.type}}
             ngModel
             #inputType="ngModel"
             required
         >
     
         <label for="grapeVariety">Grape variety:</label>
-        <input type="text" id="grape" name="grapeVariety" value={{wine.grapeVariety}}
+        <input type="text" id="grape" name="grapeVariety" placeholder={{wine.grapeVariety}}
             ngModel
             #inputGrapeVariety="ngModel"
             required
         >
     
         <label for="vintage">Vintage:</label>
-        <input type="number" id="vintage" name="vintage" value={{wine.vintage}}
+        <input type="number" id="vintage" name="vintage" placeholder={{wine.vintage}}
             ngModel
             #inputVintage="ngModel"
             required
         >
             
         <label for="wineCellar">Wine cellar:</label>
-        <input type="text" id="wine-cellar" name="wineCellar" value={{wine.wineCellar}}
+        <input type="text" id="wine-cellar" name="wineCellar" placeholder={{wine.wineCellar}}
             ngModel
             #inputWineCellar="ngModel"
             required
         >
     
         <label for="regionCountry">Region/country:</label>
-        <input type="text" id="region-country" name="regionCountry" value={{wine.regionCountry}}
+        <input type="text" id="region-country" name="regionCountry" placeholder={{wine.regionCountry}}
             ngModel
             #inputRegionCountry="ngModel"
             required
         >
     
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" value={{wine.price}}
+        <input type="number" id="price" name="price" placeholder={{wine.price}}
             ngModel
             #inputPrice="ngModel"
             required
@@ -57,14 +57,14 @@
            
     
         <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" value={{wine.description}}
+        <textarea id="description" name="description" rows="4" placeholder={{wine.description}}
             ngModel
             #inputDescription="ngModel"
             required
         ></textarea>
     
         <label for="image">Image URL:</label>
-        <input type="url" id="image" name="" value={{wine.image}}
+        <input type="url" id="image" name="" placeholder={{wine.image}}
             ngModel
             #inputImage="ngModel"
             required

@@ -29,16 +29,13 @@ export class ProductDetailsComponent implements OnInit {
   }
   remove(): void {
     const id = this.route.snapshot.params['id'];
-    console.log(id);
-    this.apiService.removeWine(id).subscribe(() => {
+    this.apiService.removeWine(this.id).subscribe(() => {
       this.router.navigate(['/catalog']);
     });
   }
   vote(): void {
     const id = this.id;
-    console.log(id);
     this.apiService.vote(id).subscribe((data) => {
-      console.log(data);
       this.router.navigate([`/catalog`])
     })
   }

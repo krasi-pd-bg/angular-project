@@ -40,7 +40,7 @@ export class ApiService {
 
   removeWine( id: string) {
     let url = `/api/catalog/${id}/delete`;
-    return this.http.get<Wine>(url);
+    return this.http.delete(url);
   }
 
   vote(id: string) {

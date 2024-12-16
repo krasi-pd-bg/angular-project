@@ -9,7 +9,6 @@ const catalogController = Router();
 
 catalogController.get('/', async (req, res) => {
     const wines = await wineService.getAll();
-    //res.cookie(AUTH_COOKIE_NAME, wines, { httpOnly: true }); //work here with cookies
     res.send(wines);
     
 });
@@ -21,26 +20,10 @@ catalogController.get('/create', (req, res) => { // isAuth
 
 catalogController.post('/create', async (req, res) => { // isAuth
     const wineData = req.body;
-    /* const wineData = {
-        name: "Terres Mavrud 2010",
-        type: "white",
-        grapeVariety: "Mavrud",
-        vintage: 2010,
-        wineCellar: "Wine Cellar Todoroff",
-        regionCountry: "Bulgaria",
-        price: 85.00,
-        description: "Fine dry red aged wine",
-        image: "https://www.sid-shop.com/media/catalog/product/cache/5a44058c21b07e4f9b1b259091147119/t/o/todoroff-teres-mavrud-2016-image_5f00ff88b682b_1280x1280.jpeg"
-    } */
-    
-    //const userId = req.user._id;
-    const userId = '6748c9320b832d410f5852cf';
-    //res.send(`post method /catalog/create works with userId: ${userId}`);
+    const userId = req.user._id;
 
     try {
         const result = await wineService.create(wineData, userId);
-        //res.cookie(AUTH_COOKIE_NAME, result, { httpOnly: true }); //work here with cookies
-        console.log(result);
         res.json(result);
         
     } catch (err) {
@@ -77,27 +60,26 @@ catalogController.get('/:wineId/details', async (req, res) => {
 
 catalogController.get('/:wineId/vote', async (req, res) => {
     const wineId = req.params.wineId;
-    //const userId = req.user._id;
-    const userId = "6748c9320b832d410f5852cf";
+    const userId = req.user._id;
+    
     try {
         await wineService.vote(wineId, userId);
         console.log("work");
-        res.send(wineId);
+        res.send({});
     } catch (err) {
-        const error = getErrorMessage(err);
-        console.log(error);   
-        //res.send(error);  
+        const error = getErrorMessage(err); 
+        res.send(error);  
         return error;   
     }
 });
 
-catalogController.get('/:wineId/delete', async (req, res) => {
+catalogController.delete('/:wineId/delete', async (req, res) => {
     try {
         await wineService.remove(req.params.wineId);
        //await wineService.remove();
+       res.send({});
     } catch (error) {
-        console.log(error);
-        //res.send(error);
+        res.send(error);
         return error;
     }
 });
@@ -112,7 +94,8 @@ catalogController.post('/:wineId/edit', async (req, res) => {
     const wineId = req.params.wineId;
     
 try {
-    await wineService.edit(wineId, wineData);
+    const editedWine = await wineService.edit(wineId, wineData);
+    res.send(editedWine);
     
 } catch (err) {
     const error = getErrorMessage(err);

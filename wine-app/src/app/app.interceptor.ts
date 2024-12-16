@@ -4,6 +4,7 @@ import { inject } from '@angular/core';
 import { ErrorMsgService } from './core/error-msg/error-msg.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
+import { UserService } from './user/user.service';
 
 const { apiUrl } = environment;
 const API = '/api';
@@ -19,11 +20,15 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
 
   const errorMsgService = inject(ErrorMsgService);
   const router = inject(Router);
+  const userService = inject(UserService);
 
   return next(req).pipe(
   catchError((err) => {
-    if (err.status === 401) {
-      router.navigate(['/auth/login']);      
+    if (err.status === 401 && userService.isLogged) {
+      router.navigate(['/auth/login']);
+    } else if ((err.status === 401 ||  err.status === 409) && !userService.isLogged)  {
+      errorMsgService.setError(err);
+    
     } else {
       errorMsgService.setError(err);
       router.navigate(['/error']);
