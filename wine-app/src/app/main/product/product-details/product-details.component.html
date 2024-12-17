@@ -19,11 +19,13 @@
                 <a class="edit-btn" [routerLink]="['/catalog', 'product', 'edit', wine._id]">Edit</a>
                 <a class="delete-btn" (click)="remove()">Delete</a>
             } @else {
-                <a id="like-button" class="like-btn" (click)="vote()">Like</a>
-            }
-            
-        </div>
-        <p id="liked-message" class="liked-message hidden">You've already liked this wine.</p>
+                @if (isLiked) {
+                    <p id="liked-message" class="liked-message hidden">You've already liked this wine.</p>
+                } @else {
+                    <a id="like-button" class="like-btn" (click)="vote()">Like</a>
+                }                
+            }            
+        </div>        
     }
         
     </div>

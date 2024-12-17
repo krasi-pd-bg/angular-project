@@ -25,6 +25,10 @@ export class ProductDetailsComponent implements OnInit {
   get isOwner(): boolean {
     return ((this.wine.owner).toString() === this.userService.user?._id)
   }
+  get isLiked(): boolean {
+    const hasLiked = this.wine?.likedList?.some((likedUserId) => likedUserId === this.userService.user?._id)
+    return !!hasLiked
+  }
 
   ngOnInit(): void {
     /*this.route.params.subscribe((data) => {
