@@ -47,13 +47,16 @@ catalogController.post('/search', async (req, res) => {
     
 });
 
-catalogController.get('/:wineId/details', async (req, res) => {
-
-    const wine = await wineService.getOne(req.params.wineId).lean();
-    
+catalogController.get('/:wineId/details', async (req, res) => {    
     //const isOwner = wine.owner.toString() == req.user?._id;
     //const isVoted = wine.likedList?.some(userId => userId == req.user?._id);
-    res.send(wine);
+    
+    try {
+        const wine = await wineService.getOne(req.params.wineId).lean();
+        res.send(wine);
+    } catch (error) {
+        res.status(404).send({error});
+    }
     
     
 });

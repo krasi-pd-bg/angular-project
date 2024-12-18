@@ -15,7 +15,7 @@ import { User } from '../../../types/user';
 })
 export class ProductDetailsComponent implements OnInit {
   id: string = '';
-  wine = {} as Wine;
+  wine =  {} as Wine ;
   
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private userService: UserService) { }
 
@@ -38,8 +38,10 @@ export class ProductDetailsComponent implements OnInit {
     this.id = id;
     
     this.apiService.getSingleWine(id).subscribe((wine) => {
+      if (!wine) {
+        this.router.navigate(['/error-page']);
+      }
       this.wine = wine;
-      console.log(wine.owner);
      });    
   }
   remove(): void {
