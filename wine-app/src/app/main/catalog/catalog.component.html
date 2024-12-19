@@ -1,10 +1,10 @@
 
-@if (this.wines.length > 0) {
+@if (wines.length > 0) {
     
     @for (wine of wines; track $index) {
         <div class="wine-card" id="wine">
             <img src={{wine.image}} alt="wine">
-            <h3>{{wine.name}}</h3>
+            <h3>{{wine.name | uppercase}}</h3>
             <p>{{wine.price}} euro</p>
             <a class='detail-btn' [routerLink]="['/catalog/product/details', wine._id]">Details</a>
         </div>

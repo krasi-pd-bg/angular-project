@@ -14,20 +14,17 @@ import { Wine } from '../../types/wine';
 export class SearchComponent {
 wines: Wine[] | null = null;
 
-  constructor( private route: ActivatedRoute, private apiService: ApiService) {}
-  
+  constructor( private route: ActivatedRoute, private apiService: ApiService) {}  
 
   query(form: NgForm) {
     if (form.invalid) {
       console.error('Invalid login form');      
       return;
     }
-    const {name, type} = form.value;
-  
+    const {name, type} = form.value;  
 
     this.apiService.search(name, type).subscribe((wines) => {
         this.wines = wines;
-        console.log(wines);
     });
 }
   

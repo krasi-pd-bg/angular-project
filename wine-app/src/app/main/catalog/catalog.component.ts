@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Wine } from '../../types/wine';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css'
 })

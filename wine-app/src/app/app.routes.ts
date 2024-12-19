@@ -9,8 +9,6 @@ import { CreateProductComponent } from './main/product/create-product/create-pro
 import { EditProductComponent } from './main/product/edit-product/edit-product.component';
 import { ProductDetailsComponent } from './main/product/product-details/product-details.component';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
-import { AuthGuard } from './guards/auth.guard';
-import { guestGuard } from './guards/guest.guard';
 import { UserComponent } from './user/user.component';
 
 export const routes: Routes = [

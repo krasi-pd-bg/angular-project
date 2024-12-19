@@ -24,15 +24,8 @@ export class UserComponent implements OnInit{
       if(!owner) {
         this.router.navigate(['/error-page']);
       }
-        this.owner = owner;   
-      
+        this.owner = owner;      
     })
-   
-
        
-    }
-   
-    
-    
-    
+    }    
 }

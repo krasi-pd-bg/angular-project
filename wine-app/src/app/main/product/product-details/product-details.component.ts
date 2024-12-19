@@ -44,7 +44,6 @@ export class ProductDetailsComponent implements OnInit {
       }
       this.wine = wine;
       this.wineOwnerId = (this.wine.owner).toString();
-      console.log(this.wineOwnerId);
      });    
   }
   remove(): void {
