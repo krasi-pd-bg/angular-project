@@ -1,0 +1,15 @@
+@if(owner) {
+    <div id="searchResults" class="search-results hidden">
+        <h2>Wine owner contacts:</h2>
+        <div class="wine-result">
+            <div class="user-info">
+                    <p><strong>Name:</strong> {{owner.username}}  </p>
+                    <p><strong>email:</strong>   {{owner.email}}</p>
+                    <a class="user-btn" [routerLink]="['/catalog']">Back to wines</a>      
+            </div>
+        </div>
+    </div>
+}
+    
+
+

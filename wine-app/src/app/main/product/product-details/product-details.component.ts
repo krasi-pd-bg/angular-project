@@ -15,6 +15,7 @@ import { User } from '../../../types/user';
 })
 export class ProductDetailsComponent implements OnInit {
   id: string = '';
+  wineOwnerId: string = '';
   wine =  {} as Wine ;
   
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private userService: UserService) { }
@@ -42,6 +43,8 @@ export class ProductDetailsComponent implements OnInit {
         this.router.navigate(['/error-page']);
       }
       this.wine = wine;
+      this.wineOwnerId = (this.wine.owner).toString();
+      console.log(this.wineOwnerId);
      });    
   }
   remove(): void {
@@ -56,6 +59,7 @@ export class ProductDetailsComponent implements OnInit {
       this.router.navigate([`/catalog`])
     })
   }
+ 
 }
 
 

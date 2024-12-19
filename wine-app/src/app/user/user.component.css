@@ -1,0 +1,44 @@
+.search-results {
+    background: brown;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.wine-result {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 8px;
+    margin: 10px auto;
+
+}
+    
+   
+    
+    
+    
+    .user-info {
+        flex: 1;
+    }
+    
+    .user-btn {
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .user-btn:hover {
+        opacity: 0.5;
+    }
+    
+    .user-info p {
+        margin-bottom: 15px;
+    }

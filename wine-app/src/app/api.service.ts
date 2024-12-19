@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Wine } from './types/wine';
 import { environment } from '../environments/environment';
+import { User } from './types/user';
 
 
 @Injectable({
@@ -51,5 +52,10 @@ export class ApiService {
   search(name: string, type: string) {
     let url = `/api/catalog/search`;
     return this.http.post<Wine[]>(url, {name, type});
+  }
+
+  getOwner(id: string) {
+    let url = `/api/auth/user/${id}`;
+    return this.http.get<User>(url);
   }
 }

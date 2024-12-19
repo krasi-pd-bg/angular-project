@@ -28,6 +28,7 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
       router.navigate(['/auth/login']);
     } else if ((err.status === 401 ||  err.status === 409) && !userService.isLogged)  {
       errorMsgService.setError(err);
+      router.navigate(['/error']);
     } else if (err.status === 404) {
       router.navigate(['/error-page']);
     } else {

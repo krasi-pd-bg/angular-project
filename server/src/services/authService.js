@@ -45,6 +45,14 @@ const authService = {
         }
         return this.generateToken(user);
     },
+
+    async getUser(id) {
+        const user = await User.findById(id);
+        if (!user) {
+            throw new Error('Invalid user');
+        }
+        return user;
+    },
     // generate token
     async generateToken(user) {
         console.log(`genToken ${user}`);

@@ -21,9 +21,11 @@
             } @else {
                 @if (isLiked) {
                     <p id="liked-message" class="liked-message hidden">You've already liked this wine.</p>
+                    <a class="contact-btn" [routerLink]="['/catalog/product/owner', wineOwnerId]">Contact us</a>
                 } @else {
                     <a id="like-button" class="like-btn" (click)="vote()">Like</a>
-                }                
+                    <a class="contact-btn" [routerLink]="['/catalog/product/owner', wineOwnerId]">Contact us</a>
+                }               
             }            
         </div>        
     }

@@ -56,6 +56,8 @@ export class UserService implements OnDestroy  {
 
   }
 
+  
+
   logout() {
     const { apiUrl } = environment;
     //let url = `${apiUrl}/auth/logout`;

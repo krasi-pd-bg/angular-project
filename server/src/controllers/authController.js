@@ -42,6 +42,17 @@ authController.get('/profile',  async (req, res) => {
     }    
 });
 
+authController.get('/user/:id', async (req, res) => {
+try {
+    const id = req.params.id;
+    const user = await authService.getUser(id);
+    res.status(200)
+    .send(user);
+} catch (error) {
+    res.status(404).send({error});
+}
+});
+
 authController.post('/login', async (req, res) => {
     // get login data
     const { username, password } = req.body;   

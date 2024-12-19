@@ -11,6 +11,7 @@ import { ProductDetailsComponent } from './main/product/product-details/product-
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { AuthGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
+import { UserComponent } from './user/user.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent },
@@ -28,7 +29,8 @@ export const routes: Routes = [
                 children: [
                     {path: 'create', component: CreateProductComponent},
                     {path: 'edit/:id', component: EditProductComponent},
-                    {path: 'details/:id', component: ProductDetailsComponent}
+                    {path: 'details/:id', component: ProductDetailsComponent},
+                    {path: 'owner/:id', component: UserComponent}
                 ]
             },
 
